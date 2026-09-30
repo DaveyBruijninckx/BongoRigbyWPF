@@ -1,0 +1,123 @@
+{
+  "version": 4,
+  "targets": {
+    "net9.0-windows": {
+      "MouseKeyHook/5.7.1": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0-windows7.0/Gma.System.MouseKeyHook.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0-windows7.0/Gma.System.MouseKeyHook.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    }
+  },
+  "libraries": {
+    "MouseKeyHook/5.7.1": {
+      "sha512": "c0VhB6cbcOpMOcoCQmvPMVqxaH76S4IPHwpbCIY7XKUNimdj9+81rX+Evnu5O53xYgUvdD7g0qmlVeZP2wGCnA==",
+      "type": "package",
+      "path": "mousekeyhook/5.7.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net472/Gma.System.MouseKeyHook.dll",
+        "lib/net48/Gma.System.MouseKeyHook.dll",
+        "lib/net6.0-windows7.0/Gma.System.MouseKeyHook.dll",
+        "lib/net7.0-windows7.0/Gma.System.MouseKeyHook.dll",
+        "mouse-keyboard-hook-logo64x64.png",
+        "mousekeyhook.5.7.1.nupkg.sha512",
+        "mousekeyhook.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0-windows": [
+      "MouseKeyHook >= 5.7.1"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\davey\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\Downloads\\School\\Native 2026\\CSD Davey Bruijninckx\\BongoRigbyWPF\\BongoRigbyWPF.csproj",
+      "projectName": "BongoRigbyWPF",
+      "projectPath": "D:\\Downloads\\School\\Native 2026\\CSD Davey Bruijninckx\\BongoRigbyWPF\\BongoRigbyWPF.csproj",
+      "packagesPath": "C:\\Users\\davey\\.nuget\\packages\\",
+      "outputPath": "D:\\Downloads\\School\\Native 2026\\CSD Davey Bruijninckx\\BongoRigbyWPF\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\davey\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0-windows"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0-windows": {
+          "framework": "net9.0-windows7.0",
+          "targetAlias": "net9.0-windows",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.400"
+    },
+    "frameworks": {
+      "net9.0-windows": {
+        "framework": "net9.0-windows7.0",
+        "targetAlias": "net9.0-windows",
+        "dependencies": {
+          "MouseKeyHook": {
+            "target": "Package",
+            "version": "[5.7.1, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

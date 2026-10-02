@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BongoRigbyWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="260" Width="200"
+        Title="MainWindow" Height="300" Width="200"
         ResizeMode="NoResize"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -20,25 +20,44 @@
         <SolidColorBrush x:Key="TEXT" Color="#f8f8f2"/>
     </Window.Resources>
 
-    <Grid>
-        <Grid Margin="0,0,10,0" Width="180" Height="220" >
-            <Border CornerRadius="4" Background="{StaticResource BG}" Padding="0">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Container that holds top bar, image, and bottom info bar with identical width and no gap -->
+        <Grid Grid.Row="0" Grid.RowSpan="2" Width="180" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="220" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+
+            <!-- Top bar inside container -->
+            <Border Grid.Row="0" Background="{StaticResource BG}" Opacity="0.95" MouseDown="Window_MouseDown" CornerRadius="6,6,0,0">
                 <Grid>
-                    <!-- Image fills the area -->
-                    <Image Stretch="UniformToFill" x:Name="CatImage"/>
+                    <Button x:Name="CloseButton" Width="28" Height="24" HorizontalAlignment="Right" VerticalAlignment="Center"
+                            Background="Transparent" BorderThickness="0" Foreground="{StaticResource FG}" FontWeight="Bold" Cursor="Hand"
+                            Click="CloseButton_Click" Padding="0" Margin="0,0,8,0">✕</Button>
+                </Grid>
+            </Border>
 
-                    <!-- Bottom info bar with left and right items -->
-                    <Border VerticalAlignment="Bottom" Height="36" Background="{StaticResource BG}" Opacity="0.95">
-                        <Grid Margin="8,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+            <!-- Image area directly under top bar, no overlay -->
+            <Border Grid.Row="1" CornerRadius="4" Background="{StaticResource BG}" Padding="0">
+                <Image Stretch="UniformToFill" x:Name="CatImage"/>
+            </Border>
 
-                            <!-- Left value -->
-                            <TextBlock Text="{Binding Score}" Foreground="{StaticResource FG}" VerticalAlignment="Center" FontSize="12" FontWeight="Semibold"/>
-                        </Grid>
-                    </Border>
+            <!-- Bottom info bar placed under the image (not overlaid) -->
+            <Border Grid.Row="2" Height="40" Background="#241f28" Opacity="0.98" CornerRadius="0,0,4,4">
+                <Grid Margin="8,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{Binding Score}" Foreground="{StaticResource FG}" VerticalAlignment="Center" FontSize="13" FontWeight="Bold"/>
+                    <TextBlock Grid.Column="1" Text="{Binding CurrentTime}" Foreground="{StaticResource FG}" VerticalAlignment="Center" FontSize="13" FontWeight="Bold"/>
                 </Grid>
             </Border>
         </Grid>

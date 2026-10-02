@@ -21,3 +21,4 @@ D:\Downloads\School\Native 2026\CSD Davey Bruijninckx\BongoRigbyWPF\obj\Debug\ne
 D:\Downloads\School\Native 2026\CSD Davey Bruijninckx\BongoRigbyWPF\obj\Debug\net9.0-windows\BongoRigbyWPF.pdb
 D:\Downloads\School\Native 2026\CSD Davey Bruijninckx\BongoRigbyWPF\obj\Debug\net9.0-windows\BongoRigbyWPF.genruntimeconfig.cache
 D:\Downloads\School\Native 2026\CSD Davey Bruijninckx\BongoRigbyWPF\obj\Debug\net9.0-windows\ref\BongoRigbyWPF.dll
+D:\Downloads\School\Native 2026\CSD Davey Bruijninckx\BongoRigbyWPF\obj\Debug\net9.0-windows\BongoRigbyWPF.sourcelink.json

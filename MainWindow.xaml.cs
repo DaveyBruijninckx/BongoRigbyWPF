@@ -80,7 +80,37 @@ namespace BongoRigbyWPF
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left) this.DragMove();
+            // Avoid starting a DragMove when clicking interactive child controls (buttons etc.)
+            if (IsClickOnInteractiveControl(e.OriginalSource as DependencyObject)) return;
+
+            // Only start drag if left button is actually pressed; guard DragMove with try/catch to avoid InvalidOperationException
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                try
+                {
+                    this.DragMove();
+                }
+                catch (InvalidOperationException)
+                {
+                    // Ignore - drag couldn't start (window state changed); prevents crash
+                }
+            }
+        }
+
+        private bool IsClickOnInteractiveControl(DependencyObject source)
+        {
+            while (source != null)
+            {
+                if (source is System.Windows.Controls.Primitives.ButtonBase) return true;
+                if (source is System.Windows.Controls.TextBox) return true;
+                if (source is System.Windows.Controls.Primitives.Thumb) return true;
+                source = System.Windows.Media.VisualTreeHelper.GetParent(source);
+            }
+            return false;
+        }
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
         private void Window_Deactivated(object sender, EventArgs e)
         {

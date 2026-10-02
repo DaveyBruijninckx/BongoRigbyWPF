@@ -1,0 +1,129 @@
+﻿using Gma.System.MouseKeyHook;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Forms;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Forms = System.Windows.Forms;
+
+//EventManager.RegisterClassHandler(typeof(Button), Button.ClickEvent, new RoutedEventHandler(Button_Click));
+
+namespace BongoRigbyWPF
+{
+
+
+    public class MainViewModel : INotifyPropertyChanged
+    {
+        public int _score;
+        private string _currentTime;
+
+    // Dit is je int-variabele voor de score
+        public int Score
+        {
+            get => _score;
+            set
+            {
+                if (_score != value)
+                {
+                    _score = value;
+                    OnPropertyChanged(); // Geeft seintje aan de XAML
+                }
+            }
+        }
+
+        public string CurrentTime
+        {
+            get => _currentTime;
+            set
+            {
+                if (_currentTime != value)
+                {
+                    _currentTime = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainViewModel ViewModel { get; set; }
+        public IKeyboardMouseEvents? hook;
+        private IKeyboardMouseEvents globalHook;
+
+        private BitmapImage idleImage;
+        private BitmapImage clickImage;
+        public MainWindow()
+        {
+            InitializeComponent();
+            ViewModel = new MainViewModel();
+            this.DataContext = ViewModel; // Koppel de ViewModel aan de XAML
+            globalHook = Hook.GlobalEvents();
+
+            globalHook.KeyDown += OnKeyDown;
+            globalHook.KeyUp += OnKeyUp;
+
+            globalHook.MouseDown += OnMouseDown;
+            globalHook.MouseUp += OnMouseUp;
+
+            // Test: start de score op 0
+            ViewModel.Score = 0;
+
+            idleImage = new BitmapImage(new Uri("pack://application:,,,/Images/rigbyIdle.jpg"));
+            clickImage = new BitmapImage(new Uri("pack://application:,,,/Images/rigbyHit.jpg"));
+            CatImage.Source = idleImage;
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left) this.DragMove();
+        }
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
+            Window window = (Window)sender;
+            window.Topmost = true;
+        }
+        private void OnKeyDown(object? sender, Forms.KeyEventArgs e)
+        {
+
+            ViewModel.Score += 1;
+            CatImage.Source = clickImage;
+        }
+        private void OnKeyUp(object? sender, Forms.KeyEventArgs e)
+        {
+            CatImage.Source = idleImage;
+        }
+        private void OnMouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            ViewModel.Score += 1;
+            CatImage.Source = clickImage;
+        }
+
+        private void OnMouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            CatImage.Source = idleImage;
+        }
+    }
+}
